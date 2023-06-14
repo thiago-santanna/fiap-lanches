@@ -1,26 +1,50 @@
-version: '3.8'
+version: '3.9'
 
 services:
   mysqlsrv:
-    platform: 'linux/x86_64'
     image: 'mysql:5.7'
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE: "fiaplanches"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
     ports:
       - "3306:3306"
     volumes:
       - ./volume_mysql:/var/lib/mysql
     networks:
-      - mysql-compose-network
+      - mysql-network
 
   adminer:
     image: adminer
+    restart: always
     ports:
       - "8181:8080"
+    depends_on:
+      - mysqlsrv
     networks:
-      - mysql-compose-network
+      - mysql-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9090:9090
+    environment:
+      - DATABASE_HOST=mysqlsrv
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=fiaplanches
+      - DATABASE_PORT=3306
+      - SERVER_PORT=9090
+      - APP_NAME=FIAP_LANCHES_DOCKER
+    depends_on:
+      - mysqlsrv
+    restart: always
+    networks:
+      - mysql-network
 
 networks:
-  mysql-compose-network:
+  mysql-network:
     driver: bridge
