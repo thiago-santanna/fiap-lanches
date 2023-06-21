@@ -1,8 +1,10 @@
 package com.tsswebapps.fiaplanches.core.domain.cliente.dto;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class ClienteCadastrado {
+    private UUID id;
     private String nome;
     private String email;
     private String cpf;
@@ -10,7 +12,8 @@ public class ClienteCadastrado {
     public ClienteCadastrado() {
     }
 
-    public ClienteCadastrado(String nome, String email, String cpf) {
+    public ClienteCadastrado(UUID id, String nome, String email, String cpf) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -18,6 +21,14 @@ public class ClienteCadastrado {
 
     public String getNome() {
         return nome;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
@@ -43,7 +54,8 @@ public class ClienteCadastrado {
     @Override
     public String toString() {
         return "ClienteCadastrado{" +
-                "nome='" + nome + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", cpf='" + cpf + '\'' +
                 '}';
@@ -54,11 +66,11 @@ public class ClienteCadastrado {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ClienteCadastrado that = (ClienteCadastrado) o;
-        return Objects.equals(cpf, that.cpf);
+        return Objects.equals(id, that.id) && Objects.equals(cpf, that.cpf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cpf);
+        return Objects.hash(id, cpf);
     }
 }

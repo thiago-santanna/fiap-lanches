@@ -13,6 +13,7 @@ public interface ClienteMapper {
     Cliente toCliente(ClienteRequest clienteRequest);
     ClienteCadastrado toClienteCadastrado(ClienteRequest clienteRequest);
     ClienteCadastrado toClienteCadastrado(Cliente cliente);
-    ClienteEntity toClienteEntity(Cliente cliente);
     ClienteCadastrado toClienteCadastrado(ClienteEntity clienteEntity);
+    ClienteEntity toClienteEntity(Cliente cliente);
+    ClienteEntity toClienteEntity(ClienteRequest clienteRequest);
 }
