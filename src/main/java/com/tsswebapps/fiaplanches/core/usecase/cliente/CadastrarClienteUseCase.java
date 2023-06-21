@@ -5,11 +5,11 @@ import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastrarClientePort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
 
-public class CadastrarUseCase implements CadastrarClientePort {
+public class CadastrarClienteUseCase implements CadastrarClientePort {
 
     private  final ClienteRepository repository;
 
-    public CadastrarUseCase(ClienteRepository repository) {
+    public CadastrarClienteUseCase(ClienteRepository repository) {
         this.repository = repository;
     }
 

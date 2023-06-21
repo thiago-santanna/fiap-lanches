@@ -5,5 +5,5 @@ import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import java.util.UUID;
 
 public interface BuscarClientePorCodigoPort {
-    ClienteCadastrado executar(UUID codigo);
+    ClienteCadastrado executar(Long codigo);
 }

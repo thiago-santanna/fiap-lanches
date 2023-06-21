@@ -25,6 +25,12 @@ public enum TipoExcecao {
         public String getMessagemError() {
             return "O Recurso que foi chamado não existe, verifique os parametros e tente novamente";
         }
+    },
+    CODIGO_NAO_INFORMADO {
+        @Override
+        public String getMessagemError() {
+            return "O código deve ser informado.";
+        }
     };
 
     public abstract String getMessagemError();

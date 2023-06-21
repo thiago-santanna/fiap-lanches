@@ -1,26 +1,30 @@
-package com.tsswebapps.fiaplanches.core.domain.cliente;
+package com.tsswebapps.fiaplanches.adapter.database.cliente.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
-import java.util.UUID;
 
-public class ClienteCadastrado {
+
+@Entity
+@Table(name = "clientes")
+public class ClienteEntity {
+    @Id
+    @GeneratedValue()
     private Long id;
     private String nome;
     private String email;
     private String cpf;
 
-    public ClienteCadastrado() {
+    public ClienteEntity() {
     }
 
-    public ClienteCadastrado(Long id, String nome, String email, String cpf) {
+    public ClienteEntity(Long id, String nome, String email, String cpf) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public Long getId() {
@@ -29,6 +33,10 @@ public class ClienteCadastrado {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -53,7 +61,7 @@ public class ClienteCadastrado {
 
     @Override
     public String toString() {
-        return "ClienteCadastrado{" +
+        return "ClienteEntity{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
@@ -65,7 +73,7 @@ public class ClienteCadastrado {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClienteCadastrado that = (ClienteCadastrado) o;
+        ClienteEntity that = (ClienteEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(cpf, that.cpf);
     }
 
