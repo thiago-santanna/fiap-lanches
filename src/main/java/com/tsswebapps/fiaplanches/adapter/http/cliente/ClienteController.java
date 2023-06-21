@@ -3,7 +3,7 @@ package com.tsswebapps.fiaplanches.adapter.http.cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.AcessarPorCpfPort;
-import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastrarPort;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastrarClientePort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +14,10 @@ import javax.validation.Valid;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-    private final CadastrarPort cadastrarPort;
+    private final CadastrarClientePort cadastrarPort;
     private final AcessarPorCpfPort acessarPorCpfPort;
 
-    public ClienteController(CadastrarPort cadastroSimplificado,
+    public ClienteController(CadastrarClientePort cadastroSimplificado,
                              AcessarPorCpfPort acessarPorCpfPort) {
         this.cadastrarPort = cadastroSimplificado;
         this.acessarPorCpfPort = acessarPorCpfPort;

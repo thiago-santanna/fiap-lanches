@@ -1,6 +1,6 @@
 package com.tsswebapps.fiaplanches.adapter.mapper;
 
-import com.tsswebapps.fiaplanches.adapter.datasource.cliente.database.entity.ClienteEntity;
+import com.tsswebapps.fiaplanches.adapter.database.cliente.entity.ClienteEntity;
 import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import org.mapstruct.Mapper;
