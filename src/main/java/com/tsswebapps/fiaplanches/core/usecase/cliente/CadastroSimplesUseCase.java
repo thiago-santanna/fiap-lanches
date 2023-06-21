@@ -5,16 +5,15 @@ import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastroSimplificadoPort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.CadastrarClienteSimplesPort;
-import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
-import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
 import com.tsswebapps.fiaplanches.core.usecase.cliente.dto.ClienteRequest;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class CadastroSimplesUseCase implements CadastroSimplificadoPort {
 
     private final CadastrarClienteSimplesPort cadastrarClienteSimples;
     private final ClienteMapper mapper;
 
-    public CadastroSimplesUseCase(CadastrarClienteSimplesPort cadastrarClienteSimples, ClienteMapper mapper) {
+    public CadastroSimplesUseCase(CadastrarClienteSimplesPort cadastrarClienteSimples, @Qualifier("clienteMapperImpl") ClienteMapper mapper) {
         this.cadastrarClienteSimples = cadastrarClienteSimples;
         this.mapper = mapper;
     }

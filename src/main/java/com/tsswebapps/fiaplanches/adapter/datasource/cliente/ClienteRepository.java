@@ -6,6 +6,6 @@ import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
 import java.util.Optional;
 
 public interface ClienteRepository {
-    Optional<ClienteCadastrado> InformarClientePorCpf(String cpf);
+    Optional<ClienteEntity> InformarClientePorCpf(String cpf);
     ClienteCadastrado CadastrarClienteDadosBasico(ClienteEntity cliente);
 }

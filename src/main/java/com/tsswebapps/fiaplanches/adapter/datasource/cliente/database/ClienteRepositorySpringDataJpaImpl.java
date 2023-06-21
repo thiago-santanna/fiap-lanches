@@ -5,6 +5,7 @@ import com.tsswebapps.fiaplanches.adapter.datasource.cliente.database.entity.Cli
 import com.tsswebapps.fiaplanches.adapter.datasource.cliente.database.repository.SpringDataJPARepository;
 import com.tsswebapps.fiaplanches.adapter.mapper.ClienteMapper;
 import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -15,14 +16,14 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
     private final SpringDataJPARepository repository;
     private final ClienteMapper mapper;
 
-    public ClienteRepositorySpringDataJpaImpl(SpringDataJPARepository repository, ClienteMapper mapper) {
+    public ClienteRepositorySpringDataJpaImpl(SpringDataJPARepository repository, @Qualifier("clienteMapperImpl") ClienteMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
-    public Optional<ClienteCadastrado> InformarClientePorCpf(String cpf) {
-        return null;
+    public Optional<ClienteEntity> InformarClientePorCpf(String cpf) {
+        return repository.findByCpf(cpf);
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.UUID;
 @Table(name = "clientes")
 public class ClienteEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     private UUID id;
     private String nome;
     private String email;

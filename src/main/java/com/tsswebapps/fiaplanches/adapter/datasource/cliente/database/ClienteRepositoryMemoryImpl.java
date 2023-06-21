@@ -8,7 +8,8 @@ import java.util.Optional;
 
 public class ClienteRepositoryMemoryImpl implements ClienteRepository {
     @Override
-    public Optional<ClienteCadastrado> InformarClientePorCpf(String cpf) {
+    public Optional<ClienteEntity> InformarClientePorCpf(String cpf) {
+
         return null;
     }
 

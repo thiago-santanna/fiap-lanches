@@ -1,5 +1,6 @@
 package com.tsswebapps.fiaplanches.adapter.http.excpetion;
 
+import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
 import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,14 +20,21 @@ import java.util.stream.Collectors;
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ApplicationException.class)
     public ResponseEntity<ResponseError> applicationException(ApplicationException ex, WebRequest request) {
+
+        HttpStatus httpStatus = switch (ex.getTipoExcecao().toString()) {
+            case "ERRO", "CPF_DEVE_SER_INFORMADO" -> HttpStatus.BAD_REQUEST;
+            case "RECURSO_NAO_ENCONTRADO" -> HttpStatus.NOT_FOUND;
+            default -> HttpStatus.BAD_REQUEST;
+        };
+
         var response = ResponseError.builder()
                 .mensagens(Collections.singletonList(ex.getTipoExcecao().getMessagemError()))
                 .erro(ex.getTipoExcecao().toString().toLowerCase())
-                .codigo(HttpStatus.BAD_REQUEST.value())
+                .codigo(httpStatus.value())
                 .timestamp(new Date())
                 .path(request.getDescription(false))
                 .build();
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, httpStatus);
     }
 
     @Override
