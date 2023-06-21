@@ -1,11 +1,11 @@
 package com.tsswebapps.fiaplanches.adapter.datasource.cliente.database;
 
+import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
 import com.tsswebapps.fiaplanches.adapter.datasource.cliente.database.entity.ClienteEntity;
 import com.tsswebapps.fiaplanches.adapter.datasource.cliente.database.repository.SpringDataJPARepository;
 import com.tsswebapps.fiaplanches.adapter.mapper.ClienteMapper;
-import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
-import com.tsswebapps.fiaplanches.core.usecase.cliente.dto.ClienteRequest;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +29,7 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
     }
 
     @Override
-    public ClienteCadastrado cadastrar(ClienteRequest cliente) {
+    public ClienteCadastrado cadastrar(Cliente cliente) {
         var clienteEntity = repository.save(mapper.toClienteEntity(cliente));
         return mapper.toClienteCadastrado(clienteEntity);
     }

@@ -1,10 +1,17 @@
 package com.tsswebapps.fiaplanches.core.domain.cliente;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class Cliente {
+    @NotBlank(message = "Nome do cliente deve ser informado")
     private String nome;
+
+    @NotBlank(message = "E-mail do cliente deve ser informado")
+    @Email
     private String email;
+    @NotBlank(message = "CPF do cliente deve ser informado")
     private String cpf;
 
     public Cliente(){}

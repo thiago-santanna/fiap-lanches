@@ -1,8 +1,8 @@
 package com.tsswebapps.fiaplanches.core.domain.cliente.ports.in;
 
-import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
-import com.tsswebapps.fiaplanches.core.usecase.cliente.dto.ClienteRequest;
+import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 
 public interface CadastrarPort {
-    ClienteCadastrado executar(ClienteRequest cliente);
+    ClienteCadastrado executar(Cliente cliente);
 }

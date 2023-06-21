@@ -1,9 +1,9 @@
 package com.tsswebapps.fiaplanches.core.usecase.cliente;
 
-import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
+import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastrarPort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
-import com.tsswebapps.fiaplanches.core.usecase.cliente.dto.ClienteRequest;
 
 public class CadastrarUseCase implements CadastrarPort {
 
@@ -14,7 +14,7 @@ public class CadastrarUseCase implements CadastrarPort {
     }
 
     @Override
-    public ClienteCadastrado executar(ClienteRequest clienteRequest) {
-        return repository.cadastrar(clienteRequest);
+    public ClienteCadastrado executar(Cliente cliente) {
+        return repository.cadastrar(cliente);
     }
 }

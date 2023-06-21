@@ -1,9 +1,9 @@
 package com.tsswebapps.fiaplanches.adapter.http.cliente;
 
-import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
+import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.AcessarPorCpfPort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastrarPort;
-import com.tsswebapps.fiaplanches.core.usecase.cliente.dto.ClienteRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class ClienteController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<ClienteCadastrado> cadastroEmailNome(
-            @RequestBody @Valid ClienteRequest cliente) {
+            @RequestBody @Valid Cliente cliente) {
         return new ResponseEntity<>(cadastrarPort.executar(cliente), HttpStatus.CREATED);
     }
 

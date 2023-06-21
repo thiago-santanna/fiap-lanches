@@ -1,12 +1,10 @@
 package com.tsswebapps.fiaplanches.core.usecase.cliente;
 
-import com.tsswebapps.fiaplanches.core.domain.cliente.dto.ClienteCadastrado;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.AcessarPorCpfPort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
 import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
 import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
-
-import java.util.Optional;
 
 public class AcessarPorCpfUseCase implements AcessarPorCpfPort {
     private  final ClienteRepository repository;

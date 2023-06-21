@@ -1,4 +1,4 @@
-package com.tsswebapps.fiaplanches.core.domain.cliente.dto;
+package com.tsswebapps.fiaplanches.core.domain.cliente;
 
 import java.util.Objects;
 import java.util.UUID;
