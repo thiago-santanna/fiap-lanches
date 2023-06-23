@@ -31,6 +31,12 @@ public enum TipoExcecao {
         public String getMessagemError() {
             return "O código deve ser informado.";
         }
+    },
+    RECURSO_DUPLICADO {
+        @Override
+        public String getMessagemError() {
+            return "O registro informado não pode ser duplicado.";
+        }
     };
 
     public abstract String getMessagemError();

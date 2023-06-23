@@ -22,7 +22,6 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<ResponseError> applicationException(ApplicationException ex, WebRequest request) {
 
         HttpStatus httpStatus = switch (ex.getTipoExcecao().toString()) {
-            case "ERRO", "CPF_DEVE_SER_INFORMADO" -> HttpStatus.BAD_REQUEST;
             case "RECURSO_NAO_ENCONTRADO" -> HttpStatus.NOT_FOUND;
             default -> HttpStatus.BAD_REQUEST;
         };

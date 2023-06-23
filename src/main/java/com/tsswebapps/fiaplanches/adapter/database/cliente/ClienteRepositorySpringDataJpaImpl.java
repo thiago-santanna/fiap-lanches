@@ -9,7 +9,6 @@ import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,7 +17,8 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
     private final SpringDataJPARepository repository;
     private final ClienteMapper mapper;
 
-    public ClienteRepositorySpringDataJpaImpl(SpringDataJPARepository repository, @Qualifier("clienteMapperImpl") ClienteMapper mapper) {
+    public ClienteRepositorySpringDataJpaImpl(SpringDataJPARepository repository,
+                                              @Qualifier("clienteMapperImpl") ClienteMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -26,6 +26,12 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
     @Override
     public Optional<ClienteCadastrado> informarClientePorCpf(String cpf) {
         Optional<ClienteEntity> entityOptional = repository.findByCpf(cpf);
+        return entityOptional.map(mapper::toClienteCadastrado).or(Optional::empty);
+    }
+
+    @Override
+    public Optional<ClienteCadastrado> informarClientePorEmail(String email) {
+        Optional<ClienteEntity>  entityOptional = repository.findByEmail(email);
         return entityOptional.map(mapper::toClienteCadastrado).or(Optional::empty);
     }
 
@@ -38,11 +44,6 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
     @Override
     public void apagar(Long codigo) {
         repository.deleteById(codigo);
-    }
-
-    @Override
-    public List<ClienteCadastrado> listarTodos() {
-        return null;
     }
 
     @Override

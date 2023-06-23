@@ -1,9 +1,6 @@
 package com.tsswebapps.fiaplanches.adapter.database.cliente.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 
@@ -14,7 +11,9 @@ public class ClienteEntity {
     @GeneratedValue()
     private Long id;
     private String nome;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String cpf;
 
     public ClienteEntity() {

@@ -2,24 +2,23 @@ package com.tsswebapps.fiaplanches.core.usecase.cliente;
 
 import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
-import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastrarClientePort;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.AlterarClientePort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
 import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
 import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
 
-public class CadastrarClienteUseCase implements CadastrarClientePort {
+public class AlterarClienteUseCase implements AlterarClientePort {
 
-    private  final ClienteRepository repository;
+    private final ClienteRepository repository;
 
-    public CadastrarClienteUseCase(ClienteRepository repository) {
+    public AlterarClienteUseCase(ClienteRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public ClienteCadastrado executar(Cliente cliente) {
-        if (repository.informarClientePorEmail(cliente.email()).isPresent() ||
-                repository.informarClientePorCpf(cliente.cpf()).isPresent()) {
-            throw new ApplicationException(TipoExcecao.RECURSO_DUPLICADO);
+        if(cliente.id() == null || cliente.id().toString().isEmpty()) {
+            throw new ApplicationException(TipoExcecao.CODIGO_NAO_INFORMADO);
         }
         return repository.salvar(cliente);
     }
