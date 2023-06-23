@@ -1,4 +1,4 @@
-# Define a imagem base
+# Define a imagemEntity base
 FROM amazoncorretto:17.0.7
 
 # Define o diretório de trabalho dentro do contêiner

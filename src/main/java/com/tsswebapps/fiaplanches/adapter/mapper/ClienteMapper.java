@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring")
 @Component
 public interface ClienteMapper {
-    ClienteCadastrado toClienteCadastrado(Cliente cliente);
     ClienteCadastrado toClienteCadastrado(ClienteEntity clienteEntity);
     ClienteEntity toClienteEntity(Cliente cliente);
 }
