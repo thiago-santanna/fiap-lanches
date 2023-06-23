@@ -37,7 +37,7 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
 
     @Override
     public void apagar(Long codigo) {
-
+        repository.deleteById(codigo);
     }
 
     @Override

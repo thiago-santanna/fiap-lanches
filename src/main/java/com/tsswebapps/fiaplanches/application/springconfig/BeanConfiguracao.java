@@ -1,10 +1,12 @@
 package com.tsswebapps.fiaplanches.application.springconfig;
 
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.AcessarPorCpfPort;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.ApagarClientePort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.BuscarClientePorCodigoPort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.CadastrarClientePort;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
 import com.tsswebapps.fiaplanches.core.usecase.cliente.AcessarPorCpfUseCase;
+import com.tsswebapps.fiaplanches.core.usecase.cliente.ApagarClienteUseCase;
 import com.tsswebapps.fiaplanches.core.usecase.cliente.BuscarClientePorCodigoUseCase;
 import com.tsswebapps.fiaplanches.core.usecase.cliente.CadastrarClienteUseCase;
 import org.springframework.context.annotation.Bean;
@@ -23,5 +25,10 @@ public class BeanConfiguracao {
     @Bean
     public BuscarClientePorCodigoPort buscarClientePorCodigoPort(ClienteRepository repository) {
         return new BuscarClientePorCodigoUseCase(repository);
+    }
+
+    @Bean
+    public ApagarClientePort apagarClientePort(ClienteRepository repository) {
+        return new ApagarClienteUseCase(repository);
     }
 }
