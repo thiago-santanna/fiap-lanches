@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
@@ -33,14 +32,12 @@ public class ClienteController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    @Transactional
     public ResponseEntity<ClienteCadastrado> cadastrarCliente(
             @RequestBody @Valid Cliente cliente) {
         return new ResponseEntity<>(cadastrarPort.executar(cliente), HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = "application/json", produces = "application/json")
-    @Transactional
     public ResponseEntity<ClienteCadastrado> alterarCliente(
             @RequestBody @Valid Cliente cliente) {
         return new ResponseEntity<>(alterarClientePort.executar(cliente), HttpStatus.OK);
@@ -57,7 +54,6 @@ public class ClienteController {
     }
 
     @DeleteMapping( value = "/{codigo}")
-    @Transactional
     public ResponseEntity<Void> apagarClientePorCodigo(@PathVariable Long codigo) {
         apagarClientePort.executar(codigo);
         return ResponseEntity.noContent().build();

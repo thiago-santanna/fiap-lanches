@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface SpringDataJPARepository extends JpaRepository<ClienteEntity, Long> {
+public interface ClienteSpringDataJPARepository extends JpaRepository<ClienteEntity, Long> {
     Optional<ClienteEntity> findByCpf(String cpf);
     Optional<ClienteEntity> findByEmail(String email);
 }

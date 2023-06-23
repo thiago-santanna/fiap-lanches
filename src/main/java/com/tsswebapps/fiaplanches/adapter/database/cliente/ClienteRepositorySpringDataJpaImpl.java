@@ -4,20 +4,21 @@ import com.tsswebapps.fiaplanches.adapter.mapper.ClienteMapper;
 import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
 import com.tsswebapps.fiaplanches.adapter.database.cliente.entity.ClienteEntity;
-import com.tsswebapps.fiaplanches.adapter.database.cliente.repository.SpringDataJPARepository;
+import com.tsswebapps.fiaplanches.adapter.database.cliente.repository.ClienteSpringDataJPARepository;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository
 public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
 
-    private final SpringDataJPARepository repository;
+    private final ClienteSpringDataJPARepository repository;
     private final ClienteMapper mapper;
 
-    public ClienteRepositorySpringDataJpaImpl(SpringDataJPARepository repository,
+    public ClienteRepositorySpringDataJpaImpl(ClienteSpringDataJPARepository repository,
                                               @Qualifier("clienteMapperImpl") ClienteMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
@@ -36,12 +37,14 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
     }
 
     @Override
+    @Transactional
     public ClienteCadastrado salvar(Cliente cliente) {
         var clienteEntity = repository.save(mapper.toClienteEntity(cliente));
         return mapper.toClienteCadastrado(clienteEntity);
     }
 
     @Override
+    @Transactional
     public void apagar(Long codigo) {
         repository.deleteById(codigo);
     }

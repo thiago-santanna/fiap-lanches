@@ -1,6 +1,7 @@
 package com.tsswebapps.fiaplanches.core.domain.Item;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 public record ItemCadastrado(
         Long id,
@@ -8,5 +9,6 @@ public record ItemCadastrado(
         String nome,
         String descricao,
         BigDecimal valor,
-        Categoria categoria
+        Categoria categoria,
+        Set<Imagem>imagens
 ) {}

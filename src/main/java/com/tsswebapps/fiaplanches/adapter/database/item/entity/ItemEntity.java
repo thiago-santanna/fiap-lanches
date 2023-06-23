@@ -15,10 +15,10 @@ public class ItemEntity {
     private String nome;
     private String descricao;
     private BigDecimal valor;
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "categoria_id")
     private CategoriaEntity categoria;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ImagemEntity> imagens = new HashSet<>();
 
     public ItemEntity() {
