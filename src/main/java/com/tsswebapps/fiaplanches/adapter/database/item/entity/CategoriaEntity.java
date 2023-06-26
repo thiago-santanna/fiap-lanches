@@ -1,8 +1,6 @@
 package com.tsswebapps.fiaplanches.adapter.database.item.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,8 +11,8 @@ public class CategoriaEntity {
     private Long id;
     @Column(nullable = false)
     private String descricao;
-    @OneToMany(mappedBy = "categoria")
-    private List<ItemEntity> itens = new ArrayList<>();
+//    @OneToMany(mappedBy = "categoria")
+//    private List<ItemEntity> itens = new ArrayList<>();
 
     public CategoriaEntity() {
     }
@@ -22,12 +20,6 @@ public class CategoriaEntity {
     public CategoriaEntity(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
-    }
-
-    public CategoriaEntity(Long id, String descricao, List<ItemEntity> itens) {
-        this.id = id;
-        this.descricao = descricao;
-        this.itens = itens;
     }
 
     public Long getId() {
@@ -38,10 +30,6 @@ public class CategoriaEntity {
         return descricao;
     }
 
-    public List<ItemEntity> getItens() {
-        return itens;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -50,16 +38,11 @@ public class CategoriaEntity {
         this.descricao = descricao;
     }
 
-    public void setItens(List<ItemEntity> itens) {
-        this.itens = itens;
-    }
-
     @Override
     public String toString() {
         return "CategoriaEntity{" +
                 "id=" + id +
                 ", descricao='" + descricao + '\'' +
-                ", itens=" + itens +
                 '}';
     }
 

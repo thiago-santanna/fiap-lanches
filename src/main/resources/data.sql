@@ -1,0 +1,4 @@
+insert into categorias  (descricao) values ('Lanche');
+insert into categorias  (descricao) values ('Acompanhamento');
+insert into categorias  (descricao) values ('Bebida');
+insert into categorias  (descricao) values ('Sobremesa');
