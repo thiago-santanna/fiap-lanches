@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 
 public class ItemRepositorySpringDataImpl implements ItemRepository {
@@ -37,7 +39,13 @@ public class ItemRepositorySpringDataImpl implements ItemRepository {
     }
 
     @Override
-    public void apagar(Long codigo) {
+    public Optional<ItemCadastrado> buscarItemPorCodigo(Long id) {
+        Optional<ItemEntity> itemEntity = repository.findById(id);
+        return itemEntity.map(mapper::toItemCadastrado).or(Optional::empty);
+    }
 
+    @Override
+    public void apagar(Long codigo) {
+        repository.deleteById(codigo);
     }
 }
