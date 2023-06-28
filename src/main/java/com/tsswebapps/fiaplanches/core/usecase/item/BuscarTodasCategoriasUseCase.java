@@ -6,10 +6,10 @@ import com.tsswebapps.fiaplanches.core.domain.Item.ports.out.CategoriaRepository
 
 import java.util.List;
 
-public class BuscarTodasCategoriasPortUseCase implements BuscarTodasCategoriasPort {
+public class BuscarTodasCategoriasUseCase implements BuscarTodasCategoriasPort {
     private final CategoriaRepository repository;
 
-    public BuscarTodasCategoriasPortUseCase(CategoriaRepository repository) {
+    public BuscarTodasCategoriasUseCase(CategoriaRepository repository) {
         this.repository = repository;
     }
 

@@ -25,7 +25,7 @@ public class ItemController {
         this.alterarItemPort = alterarItemPort;
     }
 
-    @GetMapping("/{codigo}")
+    @GetMapping("/{id}")
     public ResponseEntity<ItemCadastrado> buscarPorItem(@PathVariable Long codigo) {
         return new ResponseEntity<>(buscarItemPorCodigoPort.executar(codigo), HttpStatus.OK);
     }

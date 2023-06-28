@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface CategoriaRepository {
     Categoria salvar(Categoria categoria);
     List<Categoria> listarTodas();
-    Optional<Categoria> buscarItemPorCodigo(Long id);
+    Optional<Categoria> buscarcategoriaPorCodigo(Long id);
+    Optional<Categoria> buscarcategoriaPorDescricao(String descricao);
     void apagar(Long codigo);
 }

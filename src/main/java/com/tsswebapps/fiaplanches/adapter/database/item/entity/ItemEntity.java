@@ -15,8 +15,8 @@ public class ItemEntity {
     private String nome;
     private String descricao;
     private BigDecimal valor;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "categoria_id")
+    @ManyToOne()
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     private CategoriaEntity categoria;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ImagemEntity> imagens = new HashSet<>();

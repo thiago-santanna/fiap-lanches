@@ -37,14 +37,14 @@ public class CategoriaController {
         return new ResponseEntity(buscarTodasCategoriasPort.executar(), HttpStatus.OK);
     }
 
-    @GetMapping("/{codigo}")
-    public ResponseEntity<Categoria> buscarcategoria(@PathVariable Long codigo) {
-        return new ResponseEntity(buscarCategoriaPorCodigoPort.executar(codigo), HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<Categoria> buscarcategoria(@PathVariable Long id) {
+        return new ResponseEntity(buscarCategoriaPorCodigoPort.executar(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{codigo}")
-    public ResponseEntity<Void> apagar(@PathVariable Long codigo) {
-        apagarCategoriaPort.executar(codigo);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> apagar(@PathVariable Long id) {
+        apagarCategoriaPort.executar(id);
         return ResponseEntity.noContent().build();
     }
 }

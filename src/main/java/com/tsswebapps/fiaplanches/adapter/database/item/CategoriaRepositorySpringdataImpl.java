@@ -38,8 +38,14 @@ public class CategoriaRepositorySpringdataImpl implements CategoriaRepository {
     }
 
     @Override
-    public Optional<Categoria> buscarItemPorCodigo(Long id) {
+    public Optional<Categoria> buscarcategoriaPorCodigo(Long id) {
         Optional<CategoriaEntity> categoriaEntity = repository.findById(id);
+        return categoriaEntity.map(mapper::toCategoria).or(Optional::empty);
+    }
+
+    @Override
+    public Optional<Categoria> buscarcategoriaPorDescricao(String descricao) {
+        Optional<CategoriaEntity> categoriaEntity = repository.findByDescricao(descricao);
         return categoriaEntity.map(mapper::toCategoria).or(Optional::empty);
     }
 

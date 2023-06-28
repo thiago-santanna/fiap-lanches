@@ -48,14 +48,14 @@ public class ClienteController {
         return new ResponseEntity<>(acessarPorCpfPort.executar(cpf), HttpStatus.OK);
     }
 
-    @GetMapping( value = "/{codigo}", produces = "application/json")
-    public ResponseEntity<ClienteCadastrado> identificarPorCodigo(@PathVariable Long codigo) {
-        return new ResponseEntity<>(buscarClientePorCodigoPort.executar(codigo), HttpStatus.OK);
+    @GetMapping( value = "/{id}", produces = "application/json")
+    public ResponseEntity<ClienteCadastrado> identificarPorCodigo(@PathVariable Long id) {
+        return new ResponseEntity<>(buscarClientePorCodigoPort.executar(id), HttpStatus.OK);
     }
 
-    @DeleteMapping( value = "/{codigo}")
-    public ResponseEntity<Void> apagarClientePorCodigo(@PathVariable Long codigo) {
-        apagarClientePort.executar(codigo);
+    @DeleteMapping( value = "/{id}")
+    public ResponseEntity<Void> apagarClientePorCodigo(@PathVariable Long id) {
+        apagarClientePort.executar(id);
         return ResponseEntity.noContent().build();
     }
 }

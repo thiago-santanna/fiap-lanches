@@ -1,6 +1,8 @@
 package com.tsswebapps.fiaplanches.adapter.database.item;
 
+import com.tsswebapps.fiaplanches.adapter.database.item.entity.CategoriaEntity;
 import com.tsswebapps.fiaplanches.adapter.database.item.entity.ItemEntity;
+import com.tsswebapps.fiaplanches.adapter.database.item.repository.CategoriaSpringDataJpaRepository;
 import com.tsswebapps.fiaplanches.adapter.database.item.repository.ItemSpringDataJpaRepository;
 import com.tsswebapps.fiaplanches.adapter.mapper.ItemMapper;
 import com.tsswebapps.fiaplanches.core.domain.Item.Categoria;
@@ -17,20 +19,23 @@ import java.util.Optional;
 
 public class ItemRepositorySpringDataImpl implements ItemRepository {
 
-    private final ItemSpringDataJpaRepository repository;
-
+    private final ItemSpringDataJpaRepository itemSpringDataJpaRepository;
+    private final CategoriaSpringDataJpaRepository categoriaRepository;
     private final ItemMapper mapper;
 
-    public ItemRepositorySpringDataImpl(ItemSpringDataJpaRepository repository, ItemMapper mapper) {
-        this.repository = repository;
+
+    public ItemRepositorySpringDataImpl(ItemSpringDataJpaRepository itemSpringDataJpaRepository, CategoriaSpringDataJpaRepository categoriaRepository, ItemMapper mapper) {
+        this.itemSpringDataJpaRepository = itemSpringDataJpaRepository;
+        this.categoriaRepository = categoriaRepository;
         this.mapper = mapper;
     }
 
     @Override
     @Transactional
     public ItemCadastrado salvar(Item item) {
-        ItemEntity itemEntity = repository.save(mapper.toItemEntity(item));
-        return mapper.toItemCadastrado(itemEntity);
+        ItemEntity mapperItemEntity = mapper.toItemEntity(item);
+        mapperItemEntity.setCategoria(categoriaRepository.findByDescricao(item.getCategoria().descricao()).get());
+        return mapper.toItemCadastrado(itemSpringDataJpaRepository.save(mapperItemEntity));
     }
 
     @Override
@@ -40,12 +45,12 @@ public class ItemRepositorySpringDataImpl implements ItemRepository {
 
     @Override
     public Optional<ItemCadastrado> buscarItemPorCodigo(Long id) {
-        Optional<ItemEntity> itemEntity = repository.findById(id);
+        Optional<ItemEntity> itemEntity = itemSpringDataJpaRepository.findById(id);
         return itemEntity.map(mapper::toItemCadastrado).or(Optional::empty);
     }
 
     @Override
     public void apagar(Long codigo) {
-        repository.deleteById(codigo);
+        itemSpringDataJpaRepository.deleteById(codigo);
     }
 }

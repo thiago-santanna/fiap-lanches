@@ -26,6 +26,12 @@ public enum TipoExcecao {
             return "O Recurso que foi chamado não existe, verifique os parametros e tente novamente";
         }
     },
+    CATEGORIA_NAO_ENCONTRADA {
+        @Override
+        public String getMessagemError() {
+            return "O Recurso que foi chamado não existe, verifique os parametros e tente novamente";
+        }
+    },
     CODIGO_NAO_INFORMADO {
         @Override
         public String getMessagemError() {

@@ -17,7 +17,7 @@ public class AlterarItemUseCase implements AlterarItemPort {
 
     @Override
     public ItemCadastrado executar(Item item) {
-        if(item.id() == null || item.id().toString().isEmpty()) {
+        if(item.getId() == null || item.getId().toString().isEmpty()) {
             throw new ApplicationException(TipoExcecao.CODIGO_NAO_INFORMADO);
         }
 

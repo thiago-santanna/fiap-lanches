@@ -1,5 +1,6 @@
 package com.tsswebapps.fiaplanches.application.springconfig.item;
 
+import com.tsswebapps.fiaplanches.core.domain.Item.ports.in.*;
 import com.tsswebapps.fiaplanches.core.domain.Item.ports.out.CategoriaRepository;
 import com.tsswebapps.fiaplanches.core.domain.Item.ports.out.ItemRepository;
 import com.tsswebapps.fiaplanches.core.usecase.item.*;
@@ -10,30 +11,36 @@ import org.springframework.stereotype.Component;
 public class ItemBeans {
 
     @Bean
-    public SalvarItemUseCase salvarItemUseCase(ItemRepository repository) {
-        return new SalvarItemUseCase(repository);
+    public SalvarItemPort salvarItemPort(ItemRepository repository, CategoriaRepository categoriaRepository) {
+        return new SalvarItemUseCase(repository, categoriaRepository);
     }
     @Bean
-    public BuscarItemPorCodigoUseCase buscarItemUseCase(ItemRepository repository) {
+    public BuscarItemPorCodigoPort buscarItemPort(ItemRepository repository) {
         return new BuscarItemPorCodigoUseCase(repository);
     }
     @Bean
-    public AlterarItemUseCase alterarItemUseCase(ItemRepository repository) {
+    public AlterarItemPort alterarItemPort(ItemRepository repository) {
         return new AlterarItemUseCase(repository);
     }
     @Bean
-    public SalvarCategoriaUseCase salvarCategoriaPort(CategoriaRepository repository) {
+    public SalvarCategoriaPort salvarCategoriaPort(CategoriaRepository repository) {
         return new SalvarCategoriaUseCase(repository);
     }
     @Bean
-    public BuscarTodasCategoriasPortUseCase buscarTodasCategoriasUseCase(CategoriaRepository repository) {
-        return new BuscarTodasCategoriasPortUseCase(repository);
+    public BuscarTodasCategoriasPort buscarTodasCategoriasPort(CategoriaRepository repository) {
+        return new BuscarTodasCategoriasUseCase(repository);
     }
     @Bean
-    public BuscarCategoriaUseCasePort buscarCategoriaUseCase(CategoriaRepository repository) {
+    public BuscarCategoriaUseCasePort buscarCategoriaPort(CategoriaRepository repository) {
         return new BuscarCategoriaUseCasePort(repository);
     }
-    @Bean ApagarCategoriaUseCase apagarCategoriaUseCase(CategoriaRepository repository) {
+    @Bean
+    public BuscarCategoriaPorDescricaoPort buscarCategoriaPorDescricaoPort(CategoriaRepository repository) {
+        return new BuscarCategoriaPorDescricaoUseCase(repository);
+    }
+
+    @Bean
+    public ApagarCategoriaPort apagarCategoriaPort(CategoriaRepository repository) {
         return new ApagarCategoriaUseCase(repository);
     }
 
