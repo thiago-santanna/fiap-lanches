@@ -5,6 +5,6 @@ import com.tsswebapps.fiaplanches.core.domain.Item.ItemCadastrado;
 
 import java.util.List;
 
-public interface ListarItensPorCategoria {
+public interface ListarItensPorCategoriaPort {
     List<ItemCadastrado> executar(Categoria categoria);
 }

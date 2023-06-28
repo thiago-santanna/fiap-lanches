@@ -1,16 +1,16 @@
 package com.tsswebapps.fiaplanches.core.usecase.item;
 
 import com.tsswebapps.fiaplanches.core.domain.Item.Categoria;
-import com.tsswebapps.fiaplanches.core.domain.Item.ports.in.BuscarCategoriaPorCodigo;
+import com.tsswebapps.fiaplanches.core.domain.Item.ports.in.BuscarCategoriaPorCodigoPort;
 import com.tsswebapps.fiaplanches.core.domain.Item.ports.out.CategoriaRepository;
 import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
 import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
 
-public class BuscarcategoriaUseCase implements BuscarCategoriaPorCodigo {
+public class BuscarCategoriaUseCasePort implements BuscarCategoriaPorCodigoPort {
 
     private final CategoriaRepository repository;
 
-    public BuscarcategoriaUseCase(CategoriaRepository repository) {
+    public BuscarCategoriaUseCasePort(CategoriaRepository repository) {
         this.repository = repository;
     }
 

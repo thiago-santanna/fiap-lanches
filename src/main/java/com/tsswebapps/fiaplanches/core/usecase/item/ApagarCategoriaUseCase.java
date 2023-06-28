@@ -12,7 +12,7 @@ public class ApagarCategoriaUseCase implements ApagarCategoriaPort {
     }
 
     @Override
-    public void apagar(Long codigo) {
+    public void executar(Long codigo) {
         repository.apagar(codigo);
     }
 }

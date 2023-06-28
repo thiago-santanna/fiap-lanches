@@ -5,13 +5,14 @@ import com.tsswebapps.fiaplanches.adapter.database.item.repository.CategoriaSpri
 import com.tsswebapps.fiaplanches.adapter.mapper.CategoriaMapper;
 import com.tsswebapps.fiaplanches.core.domain.Item.Categoria;
 import com.tsswebapps.fiaplanches.core.domain.Item.ports.out.CategoriaRepository;
-import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
-import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoriaRepositorySpringdataImpl implements CategoriaRepository {
 
     private final CategoriaSpringDataJpaRepository repository;
