@@ -44,12 +44,12 @@ public class ClienteController {
     }
 
     @GetMapping(value = "/cpf/{cpf}", produces = "application/json")
-    public ResponseEntity<ClienteCadastrado> identificarPorCPF(@PathVariable String cpf) {
+    public ResponseEntity<ClienteCadastrado> logarPorCPF(@PathVariable String cpf) {
         return new ResponseEntity<>(acessarPorCpfPort.executar(cpf), HttpStatus.OK);
     }
 
     @GetMapping( value = "/{id}", produces = "application/json")
-    public ResponseEntity<ClienteCadastrado> identificarPorCodigo(@PathVariable Long id) {
+    public ResponseEntity<ClienteCadastrado> logarPorCodigo(@PathVariable Long id) {
         return new ResponseEntity<>(buscarClientePorCodigoPort.executar(id), HttpStatus.OK);
     }
 

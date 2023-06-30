@@ -1,4 +1,4 @@
-package com.tsswebapps.fiaplanches.application.swagger;
+package com.tsswebapps.fiaplanches.configuration.swagger;
 
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;

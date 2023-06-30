@@ -10,7 +10,6 @@ import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
 import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
 
 public class SalvarItemUseCase implements SalvarItemPort {
-
     private final ItemRepository itemRepository;
     private final CategoriaRepository categoriaRepository;
 
@@ -21,17 +20,11 @@ public class SalvarItemUseCase implements SalvarItemPort {
 
     @Override
     public ItemCadastrado executar(Item item) {
-        ValidarCategoria(item);
+        var validar = new ValidarCategoria(categoriaRepository);
+        validar.validarCategoria(item);
+
         return itemRepository.salvar(item);
     }
 
-    private void ValidarCategoria(Item item) {
-        if( item.getCategoria() == null) {
-            throw  new ApplicationException(TipoExcecao.RECURSO_NAO_ENCONTRADO);
-        }
-        else {
-            categoriaRepository.buscarcategoriaPorDescricao(item.getCategoria().descricao())
-                    .orElseThrow(() -> new ApplicationException(TipoExcecao.CATEGORIA_NAO_ENCONTRADA));
-        }
-    }
+
 }

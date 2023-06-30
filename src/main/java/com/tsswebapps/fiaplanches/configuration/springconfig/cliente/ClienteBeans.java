@@ -1,4 +1,4 @@
-package com.tsswebapps.fiaplanches.application.springconfig.cliente;
+package com.tsswebapps.fiaplanches.configuration.springconfig.cliente;
 
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.*;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;

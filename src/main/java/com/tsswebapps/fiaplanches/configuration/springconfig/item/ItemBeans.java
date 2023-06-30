@@ -1,4 +1,4 @@
-package com.tsswebapps.fiaplanches.application.springconfig.item;
+package com.tsswebapps.fiaplanches.configuration.springconfig.item;
 
 import com.tsswebapps.fiaplanches.core.domain.Item.ports.in.*;
 import com.tsswebapps.fiaplanches.core.domain.Item.ports.out.CategoriaRepository;
@@ -14,14 +14,30 @@ public class ItemBeans {
     public SalvarItemPort salvarItemPort(ItemRepository repository, CategoriaRepository categoriaRepository) {
         return new SalvarItemUseCase(repository, categoriaRepository);
     }
+
     @Bean
     public BuscarItemPorCodigoPort buscarItemPort(ItemRepository repository) {
         return new BuscarItemPorCodigoUseCase(repository);
     }
     @Bean
+    public BuscarTodosItensPort buscarTodosItensPort(ItemRepository repository) {
+        return new BuscarTodosItensUseCase(repository);
+    }
+    @Bean
+    public ApagarItemPort apagarItemPort(ItemRepository repository) {
+        return new ApagarItemUseCase(repository);
+    }
+
+    @Bean
     public AlterarItemPort alterarItemPort(ItemRepository repository) {
         return new AlterarItemUseCase(repository);
     }
+
+    @Bean
+    public AlterarItemCategoriaPort alterarItemCategoriaPort(ItemRepository repository, CategoriaRepository categoriaRepository) {
+        return new AlterarItemCategoriaUseCase(repository, categoriaRepository);
+    }
+
     @Bean
     public SalvarCategoriaPort salvarCategoriaPort(CategoriaRepository repository) {
         return new SalvarCategoriaUseCase(repository);
@@ -38,7 +54,6 @@ public class ItemBeans {
     public BuscarCategoriaPorDescricaoPort buscarCategoriaPorDescricaoPort(CategoriaRepository repository) {
         return new BuscarCategoriaPorDescricaoUseCase(repository);
     }
-
     @Bean
     public ApagarCategoriaPort apagarCategoriaPort(CategoriaRepository repository) {
         return new ApagarCategoriaUseCase(repository);
