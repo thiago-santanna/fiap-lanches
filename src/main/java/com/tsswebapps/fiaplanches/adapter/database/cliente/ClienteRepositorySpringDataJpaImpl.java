@@ -2,6 +2,7 @@ package com.tsswebapps.fiaplanches.adapter.database.cliente;
 
 import com.tsswebapps.fiaplanches.adapter.mapper.ClienteMapper;
 import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteLogin;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.out.ClienteRepository;
 import com.tsswebapps.fiaplanches.adapter.database.cliente.entity.ClienteEntity;
 import com.tsswebapps.fiaplanches.adapter.database.cliente.repository.ClienteSpringDataJPARepository;
@@ -34,6 +35,11 @@ public class ClienteRepositorySpringDataJpaImpl implements ClienteRepository {
     public Optional<ClienteCadastrado> informarClientePorEmail(String email) {
         Optional<ClienteEntity>  entityOptional = repository.findByEmail(email);
         return entityOptional.map(mapper::toClienteCadastrado).or(Optional::empty);
+    }
+
+    @Override
+    public Optional<ClienteCadastrado> informarClientePorNomeEmail(ClienteLogin cliente) {
+        return this.informarClientePorEmail(cliente.email());
     }
 
     @Override

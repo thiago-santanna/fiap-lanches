@@ -2,6 +2,7 @@ package com.tsswebapps.fiaplanches.adapter.http.cliente;
 
 import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteCadastrado;
+import com.tsswebapps.fiaplanches.core.domain.cliente.ClienteLogin;
 import com.tsswebapps.fiaplanches.core.domain.cliente.ports.in.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +20,18 @@ public class ClienteController {
     private final AcessarPorCpfPort acessarPorCpfPort;
     private final BuscarClientePorCodigoPort buscarClientePorCodigoPort;
     private final ApagarClientePort apagarClientePort;
+    private final AcessarNomeEmailPort acessarNomeEmailPort;
 
     public ClienteController(CadastrarClientePort cadastroSimplificado,
                              AlterarClientePort alterarClientePort, AcessarPorCpfPort acessarPorCpfPort,
                              BuscarClientePorCodigoPort buscarClientePorCodigoPort,
-                             ApagarClientePort apagarClientePort) {
+                             ApagarClientePort apagarClientePort, AcessarNomeEmailPort acessarNomeEmailPort) {
         this.cadastrarPort = cadastroSimplificado;
         this.alterarClientePort = alterarClientePort;
         this.acessarPorCpfPort = acessarPorCpfPort;
         this.buscarClientePorCodigoPort = buscarClientePorCodigoPort;
         this.apagarClientePort = apagarClientePort;
+        this.acessarNomeEmailPort = acessarNomeEmailPort;
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
@@ -53,7 +56,12 @@ public class ClienteController {
         return new ResponseEntity<>(buscarClientePorCodigoPort.executar(id), HttpStatus.OK);
     }
 
-    @DeleteMapping( value = "/{id}")
+    @GetMapping( value = "/login", produces = "application/json")
+    public ResponseEntity<ClienteCadastrado> logarPorCodigo(@RequestBody ClienteLogin cliente) {
+        return new ResponseEntity<>(acessarNomeEmailPort.executar(cliente), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> apagarClientePorCodigo(@PathVariable Long id) {
         apagarClientePort.executar(id);
         return ResponseEntity.noContent().build();

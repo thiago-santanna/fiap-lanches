@@ -17,6 +17,10 @@ public class ClienteBeans {
         return new AcessarPorCpfUseCase(repository);
     }
     @Bean
+    public AcessarNomeEmailPort acessarNomeEmailPort(ClienteRepository repository) {
+        return new AcessarPorNomeEmailUseCase(repository);
+    }
+    @Bean
     public BuscarClientePorCodigoPort buscarClientePorCodigoPort(ClienteRepository repository) {
         return new BuscarClientePorCodigoUseCase(repository);
     }
