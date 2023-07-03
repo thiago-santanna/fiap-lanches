@@ -3,7 +3,7 @@ package com.tsswebapps.fiaplanches.core.domain.pedido;
 import java.util.Random;
 
 class GerarComandas {
-    String executar(int digits) {
+    static String executar(int digits) {
         Random random = new Random();
         StringBuilder code = new StringBuilder();
 

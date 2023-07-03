@@ -43,6 +43,12 @@ public enum TipoExcecao {
         public String getMessagemError() {
             return "O registro informado não pode ser duplicado.";
         }
+    },
+    CLIENTE_NAO_ENCONTRADO {
+        @Override
+        public String getMessagemError() {
+            return "O Cliente informado não foi encontrado.";
+        }
     };
 
     public abstract String getMessagemError();

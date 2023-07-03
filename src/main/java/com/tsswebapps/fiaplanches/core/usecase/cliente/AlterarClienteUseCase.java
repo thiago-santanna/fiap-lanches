@@ -17,7 +17,7 @@ public class AlterarClienteUseCase implements AlterarClientePort {
 
     @Override
     public ClienteCadastrado executar(Cliente cliente) {
-        if(cliente.id() == null || cliente.id().toString().isEmpty()) {
+        if(cliente.getId() == null || cliente.getId().toString().isEmpty()) {
             throw new ApplicationException(TipoExcecao.CODIGO_NAO_INFORMADO);
         }
         return repository.salvar(cliente);

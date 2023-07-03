@@ -14,4 +14,56 @@ public class Pedido {
     private SituacaoPedido situacaoPedido;
     private Cliente cliente;
     private Set<ItemPedido> itensPedido = new HashSet<>();
+
+    public Pedido() {
+        this.comanda = GerarComandas.executar(6);
+    }
+
+    public String getComanda() {
+        return comanda;
+    }
+
+    public void setComanda(String comanda) {
+        this.comanda = comanda;
+    }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public LocalDateTime getDataHoraPedido() {
+        return dataHoraPedido;
+    }
+
+    public void setDataHoraPedido(LocalDateTime dataHoraPedido) {
+        this.dataHoraPedido = dataHoraPedido;
+    }
+
+    public SituacaoPedido getSituacaoPedido() {
+        return situacaoPedido;
+    }
+
+    public void setSituacaoPedido(SituacaoPedido situacaoPedido) {
+        this.situacaoPedido = situacaoPedido;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Set<ItemPedido> getItensPedido() {
+        return itensPedido;
+    }
+
+    public void setItensPedido(Set<ItemPedido> itensPedido) {
+        this.itensPedido = itensPedido;
+    }
 }

@@ -17,8 +17,8 @@ public class CadastrarClienteUseCase implements CadastrarClientePort {
 
     @Override
     public ClienteCadastrado executar(Cliente cliente) {
-        if (repository.informarClientePorEmail(cliente.email()).isPresent() ||
-                repository.informarClientePorCpf(cliente.cpf()).isPresent()) {
+        if (repository.informarClientePorEmail(cliente.getEmail()).isPresent() ||
+                repository.informarClientePorCpf(cliente.getCpf()).isPresent()) {
             throw new ApplicationException(TipoExcecao.RECURSO_DUPLICADO);
         }
         return repository.salvar(cliente);
