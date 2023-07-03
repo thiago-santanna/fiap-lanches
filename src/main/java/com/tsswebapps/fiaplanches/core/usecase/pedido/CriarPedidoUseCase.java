@@ -16,6 +16,7 @@ public class CriarPedidoUseCase implements CriarPedidoPort {
     @Override
     public PedidoCriadoResponse executar(String cpf) {
         Pedido pedido = new Pedido();
+
         if(cpf != null && !cpf.isEmpty()) {
             Cliente cliente = new Cliente();
             cliente.setCpf(cpf);

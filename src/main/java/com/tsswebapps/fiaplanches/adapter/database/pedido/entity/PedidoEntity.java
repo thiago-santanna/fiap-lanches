@@ -22,9 +22,9 @@ public class PedidoEntity {
     private Long id;
     @Column(nullable = false, unique = true)
     private String comanda;
-    private BigDecimal valorTotal = BigDecimal.ZERO;
-    private LocalDateTime dataHoraPedido = LocalDateTime.now();
-    private SituacaoPedido situacaoPedido = SituacaoPedido.RECEBIDO;
+    private BigDecimal valorTotal;
+    private LocalDateTime dataHoraPedido;
+    private SituacaoPedido situacaoPedido;
     @ManyToOne(targetEntity = ClienteEntity.class)
     private ClienteEntity cliente;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

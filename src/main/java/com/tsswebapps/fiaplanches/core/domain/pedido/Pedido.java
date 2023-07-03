@@ -9,9 +9,9 @@ import java.util.*;
 
 public class Pedido {
     private String comanda;
-    private BigDecimal valorTotal;
-    private LocalDateTime dataHoraPedido;
-    private SituacaoPedido situacaoPedido;
+    private BigDecimal valorTotal = BigDecimal.ZERO;
+    private LocalDateTime dataHoraPedido = LocalDateTime.now();
+    private SituacaoPedido situacaoPedido = SituacaoPedido.RECEBIDO;
     private Cliente cliente;
     private Set<ItemPedido> itensPedido = new HashSet<>();
 
