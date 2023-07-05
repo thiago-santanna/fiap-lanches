@@ -27,8 +27,12 @@ public class PedidoEntity {
     private SituacaoPedido situacaoPedido;
     @ManyToOne(targetEntity = ClienteEntity.class)
     private ClienteEntity cliente;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ItemPedidoEntity> itensPedido = new HashSet<>();
+
+    public void adicionarItemPedidoEntity(ItemPedidoEntity itemPedidoEntity) {
+        this.itensPedido.add(itemPedidoEntity);
+    }
 
     public Long getId() {
         return id;

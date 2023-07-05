@@ -90,6 +90,16 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
+						<source>17</source>
+						<target>17</target>
+						<annotationProcessorPaths>
+							<path>
+								<groupId>org.mapstruct</groupId>
+								<artifactId>mapstruct-processor</artifactId>
+								<version>1.4.2.Final</version>
+							</path>
+							<!-- other annotation processors -->
+						</annotationProcessorPaths>
 					</excludes>
 				</configuration>
 			</plugin>

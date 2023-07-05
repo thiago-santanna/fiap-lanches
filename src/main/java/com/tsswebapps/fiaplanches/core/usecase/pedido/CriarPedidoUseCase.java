@@ -2,7 +2,7 @@ package com.tsswebapps.fiaplanches.core.usecase.pedido;
 
 import com.tsswebapps.fiaplanches.core.domain.cliente.Cliente;
 import com.tsswebapps.fiaplanches.core.domain.pedido.Pedido;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ports.PedidoCriadoResponse;
+import com.tsswebapps.fiaplanches.core.domain.pedido.PedidoCriadoResponse;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.CriarPedidoPort;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ports.out.PedidoRepository;
 

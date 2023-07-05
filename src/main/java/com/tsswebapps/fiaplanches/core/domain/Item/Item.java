@@ -36,6 +36,10 @@ public class Item {
                 this.imagens = imagens;
         }
 
+        public Item(String referenciaFabricante) {
+                this.referenciaFabricante = referenciaFabricante;
+        }
+
         public Long getId() {
                 return id;
         }

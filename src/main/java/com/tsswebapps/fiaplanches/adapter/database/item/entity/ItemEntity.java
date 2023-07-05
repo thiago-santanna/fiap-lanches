@@ -18,7 +18,7 @@ public class ItemEntity {
     @ManyToOne()
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     private CategoriaEntity categoria;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ImagemEntity> imagens = new HashSet<>();
 
     public ItemEntity() {
