@@ -1,9 +1,6 @@
 package com.tsswebapps.fiaplanches.adapter.http.pedido;
 
-import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedidoRequest;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedidoResponse;
-import com.tsswebapps.fiaplanches.core.domain.pedido.PagamentoResponse;
-import com.tsswebapps.fiaplanches.core.domain.pedido.PedidoCriadoResponse;
+import com.tsswebapps.fiaplanches.core.domain.pedido.*;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,8 +70,8 @@ public class PedidoController {
     }
 
     @GetMapping("/{comanda}")
-    public ResponseEntity<?> chegarAndamentoPedido(@PathVariable String comanda) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<AndamentoPedido> chegarAndamentoPedido(@PathVariable String comanda) {
+        return new ResponseEntity<>(checarAndamentoPedidoPort.executar(comanda),HttpStatus.OK);
     }
 
     @PostMapping("/{comanda}/pagar")

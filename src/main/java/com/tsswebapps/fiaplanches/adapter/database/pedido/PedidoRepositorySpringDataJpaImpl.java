@@ -122,7 +122,12 @@ public class PedidoRepositorySpringDataJpaImpl implements PedidoRepository {
 
     @Override
     public AndamentoPedido checarAndamentoPedido(String comanda) {
-        return null;
+        PedidoEntity pedidoEntity = getPedidoEntity(comanda);
+
+        return new AndamentoPedido(
+                pedidoEntity.getComanda(),
+                pedidoEntity.getDataHoraPedido(),
+                pedidoEntity.getSituacaoPedido());
     }
 
     private PedidoEntity getPedidoEntity(String comanda) {

@@ -4,6 +4,9 @@ import com.tsswebapps.fiaplanches.core.domain.pedido.AndamentoPedido;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.ChecarAndamentoPedidoPort;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ports.out.PedidoRepository;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 public class ChecarAndamentoUseCase implements ChecarAndamentoPedidoPort {
 
     private final PedidoRepository repository;
@@ -13,6 +16,15 @@ public class ChecarAndamentoUseCase implements ChecarAndamentoPedidoPort {
     }
     @Override
     public AndamentoPedido executar(String comanda) {
-        return null;
+        var andamentoPedido = repository.checarAndamentoPedido(comanda);
+        var dataAtual = LocalDateTime.now();
+        Duration betweened = Duration.between(andamentoPedido.getDataHoraPedido(), dataAtual);
+        long hours = betweened.toHours();
+        long minutes = betweened.toMinutes() % 60;
+        String diferencaFormatada = String.format("%02dh:%02dm", hours, minutes);
+        andamentoPedido.setTempoQueFoipedido(diferencaFormatada);
+        return andamentoPedido;
     }
+
+
 }
