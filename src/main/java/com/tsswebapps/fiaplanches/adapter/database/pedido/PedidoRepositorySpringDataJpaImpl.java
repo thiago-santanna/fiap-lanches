@@ -106,6 +106,25 @@ public class PedidoRepositorySpringDataJpaImpl implements PedidoRepository {
         return mapper.toPedido(getPedidoEntity(comanda));
     }
 
+    @Override
+    public void finalizarPedido(String comanda) {
+        PedidoEntity pedidoEntity = getPedidoEntity(comanda);
+        pedidoEntity.setSituacaoPedido(SituacaoPedido.FINALIZADO);
+        repository.save(pedidoEntity);
+    }
+
+    @Override
+    public void entregarPedido(String comanda) {
+        PedidoEntity pedidoEntity = getPedidoEntity(comanda);
+        pedidoEntity.setSituacaoPedido(SituacaoPedido.PRONTO);
+        repository.save(pedidoEntity);
+    }
+
+    @Override
+    public AndamentoPedido checarAndamentoPedido(String comanda) {
+        return null;
+    }
+
     private PedidoEntity getPedidoEntity(String comanda) {
         return repository.findByComanda(comanda).orElseThrow(
                 () -> new ApplicationException(TipoExcecao.RECURSO_NAO_ENCONTRADO)

@@ -1,9 +1,6 @@
 package com.tsswebapps.fiaplanches.core.domain.pedido.ports.out;
 
-import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedido;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedidoResponse;
-import com.tsswebapps.fiaplanches.core.domain.pedido.Pedido;
-import com.tsswebapps.fiaplanches.core.domain.pedido.PedidoCriadoResponse;
+import com.tsswebapps.fiaplanches.core.domain.pedido.*;
 
 public interface PedidoRepository {
     PedidoCriadoResponse criarPedido(Pedido pedido);
@@ -12,4 +9,7 @@ public interface PedidoRepository {
     void confirmarPedido(String comanda);
     void confirmarPagamentoPedido(String comanda);
     Pedido getPedido(String comanda);
+    void finalizarPedido(String comanda);
+    void entregarPedido(String comanda);
+    AndamentoPedido checarAndamentoPedido(String comanda);
 }

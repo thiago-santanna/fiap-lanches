@@ -24,6 +24,7 @@ public class PedidoEntity {
     private String comanda;
     private BigDecimal valorTotal;
     private LocalDateTime dataHoraPedido;
+    @Enumerated(EnumType.STRING)
     private SituacaoPedido situacaoPedido;
     @ManyToOne(targetEntity = ClienteEntity.class)
     private ClienteEntity cliente;

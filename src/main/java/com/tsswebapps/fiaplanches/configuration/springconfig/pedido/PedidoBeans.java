@@ -30,4 +30,16 @@ public class PedidoBeans {
     public PagarPedidoPort pagarPedidoPort(PedidoRepository repository, PagarPedidoIntegracaoPort integracaoPort) {
         return new PagarPedidoUseCase(repository, integracaoPort);
     }
+    @Bean
+    public FinalizarPedidoPort finalizarPedidoPort(PedidoRepository repository) {
+        return new FinalizarPedidoUseCase(repository);
+    }
+    @Bean
+    public EntregarPedidoPort entregarPedidoPort(PedidoRepository repository) {
+        return new EntregarPedidoUseCase(repository);
+    }
+    @Bean
+    public ChecarAndamentoPedidoPort checarAndamentoPedidoPort(PedidoRepository repository) {
+        return new ChecarAndamentoUseCase(repository);
+    }
 }

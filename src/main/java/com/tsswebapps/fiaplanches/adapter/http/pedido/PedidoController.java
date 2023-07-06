@@ -21,13 +21,19 @@ public class PedidoController {
     public final ConfirmarPedidoPort confirmarPedidoPort;
 
     public final PagarPedidoPort pagarPedidoPort;
+    public final FinalizarPedidoPort finalizarPedidoPort;
+    public final EntregarPedidoPort entregarPedidoPort;
+    public final ChecarAndamentoPedidoPort checarAndamentoPedidoPort;
 
-    public PedidoController(CriarPedidoPort criarPedidoPort, AdicionarItemAoPedidoPort adicionarItemAoPedidoPort, RemoveItemDoPedidoPort removeItemDoPedidoPort, ConfirmarPedidoPort confirmarPedidoPort, PagarPedidoPort pagarPedidoPort) {
+    public PedidoController(CriarPedidoPort criarPedidoPort, AdicionarItemAoPedidoPort adicionarItemAoPedidoPort, RemoveItemDoPedidoPort removeItemDoPedidoPort, ConfirmarPedidoPort confirmarPedidoPort, PagarPedidoPort pagarPedidoPort, FinalizarPedidoPort finalizarPedidoPort, EntregarPedidoPort entregarPedidoPort, ChecarAndamentoPedidoPort checarAndamentoPedidoPort) {
         this.criarPedidoPort = criarPedidoPort;
         this.adicionarItemAoPedidoPort = adicionarItemAoPedidoPort;
         this.removeItemDoPedidoPort = removeItemDoPedidoPort;
         this.confirmarPedidoPort = confirmarPedidoPort;
         this.pagarPedidoPort = pagarPedidoPort;
+        this.finalizarPedidoPort = finalizarPedidoPort;
+        this.entregarPedidoPort = entregarPedidoPort;
+        this.checarAndamentoPedidoPort = checarAndamentoPedidoPort;
     }
 
     @PostMapping(produces = "application/json")
@@ -48,9 +54,26 @@ public class PedidoController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{comanda}")
+    @PostMapping("/{comanda}/confirmar")
     public ResponseEntity<Void> confirmarPedido(@PathVariable String comanda) {
         confirmarPedidoPort.executar(comanda);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/{comanda}/finalizar")
+    public ResponseEntity<Void> finalizarPedido(@PathVariable String comanda) {
+        finalizarPedidoPort.executar(comanda);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/{comanda}/entregar")
+    public ResponseEntity<Void> entregarPedido(@PathVariable String comanda) {
+        entregarPedidoPort.executar(comanda);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{comanda}")
+    public ResponseEntity<?> chegarAndamentoPedido(@PathVariable String comanda) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
