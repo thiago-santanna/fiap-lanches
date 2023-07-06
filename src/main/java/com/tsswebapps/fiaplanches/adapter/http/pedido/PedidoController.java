@@ -2,10 +2,9 @@ package com.tsswebapps.fiaplanches.adapter.http.pedido;
 
 import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedidoRequest;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedidoResponse;
+import com.tsswebapps.fiaplanches.core.domain.pedido.PagamentoResponse;
 import com.tsswebapps.fiaplanches.core.domain.pedido.PedidoCriadoResponse;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.AdicionarItemAoPedidoPort;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.CriarPedidoPort;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.RemoveItemDoPedidoPort;
+import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +18,16 @@ public class PedidoController {
 
     public final RemoveItemDoPedidoPort removeItemDoPedidoPort;
 
-    public PedidoController(CriarPedidoPort criarPedidoPort, AdicionarItemAoPedidoPort adicionarItemAoPedidoPort, RemoveItemDoPedidoPort removeItemDoPedidoPort) {
+    public final ConfirmarPedidoPort confirmarPedidoPort;
+
+    public final PagarPedidoPort pagarPedidoPort;
+
+    public PedidoController(CriarPedidoPort criarPedidoPort, AdicionarItemAoPedidoPort adicionarItemAoPedidoPort, RemoveItemDoPedidoPort removeItemDoPedidoPort, ConfirmarPedidoPort confirmarPedidoPort, PagarPedidoPort pagarPedidoPort) {
         this.criarPedidoPort = criarPedidoPort;
         this.adicionarItemAoPedidoPort = adicionarItemAoPedidoPort;
         this.removeItemDoPedidoPort = removeItemDoPedidoPort;
+        this.confirmarPedidoPort = confirmarPedidoPort;
+        this.pagarPedidoPort = pagarPedidoPort;
     }
 
     @PostMapping(produces = "application/json")
@@ -44,9 +49,13 @@ public class PedidoController {
     }
 
     @PostMapping("/{comanda}")
-    public ResponseEntity<?> confirmarPedido() {
+    public ResponseEntity<Void> confirmarPedido(@PathVariable String comanda) {
+        confirmarPedidoPort.executar(comanda);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
-
-        return ResponseEntity.ok().build();
+    @PostMapping("/{comanda}/pagar")
+    public ResponseEntity<PagamentoResponse> pagarPedido(@PathVariable String comanda) {
+        return new ResponseEntity(pagarPedidoPort.executar(comanda), HttpStatus.OK);
     }
 }

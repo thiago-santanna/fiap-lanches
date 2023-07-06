@@ -5,13 +5,9 @@ import com.tsswebapps.fiaplanches.adapter.database.item.entity.ItemEntity;
 import com.tsswebapps.fiaplanches.adapter.database.item.repository.ItemSpringDataJpaRepository;
 import com.tsswebapps.fiaplanches.adapter.database.pedido.entity.ItemPedidoEntity;
 import com.tsswebapps.fiaplanches.adapter.database.pedido.entity.PedidoEntity;
-import com.tsswebapps.fiaplanches.adapter.database.pedido.repository.ItemPedidoSpringDataJpaRepository;
 import com.tsswebapps.fiaplanches.adapter.database.pedido.repository.PedidoSprinfDataJpaRepository;
 import com.tsswebapps.fiaplanches.adapter.mapper.PedidoMapper;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedido;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ItemPedidoResponse;
-import com.tsswebapps.fiaplanches.core.domain.pedido.Pedido;
-import com.tsswebapps.fiaplanches.core.domain.pedido.PedidoCriadoResponse;
+import com.tsswebapps.fiaplanches.core.domain.pedido.*;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ports.out.PedidoRepository;
 import com.tsswebapps.fiaplanches.core.dto.TipoExcecao;
 import com.tsswebapps.fiaplanches.core.exception.ApplicationException;
@@ -24,15 +20,13 @@ import java.util.Set;
 @Repository
 public class PedidoRepositorySpringDataJpaImpl implements PedidoRepository {
     private final PedidoSprinfDataJpaRepository repository;
-    private final ItemPedidoSpringDataJpaRepository itemPedidoSpringDataJpaRepository;
     private final ClienteSpringDataJPARepository clienteRepository;
     private final ItemSpringDataJpaRepository itemSpringDataJpaRepository;
 
     private final PedidoMapper mapper;
 
-    public PedidoRepositorySpringDataJpaImpl(PedidoSprinfDataJpaRepository repository, ItemPedidoSpringDataJpaRepository itemPedidoSpringDataJpaRepository, ClienteSpringDataJPARepository clienteRepository, ItemSpringDataJpaRepository itemSpringDataJpaRepository, PedidoMapper mapper) {
+    public PedidoRepositorySpringDataJpaImpl(PedidoSprinfDataJpaRepository repository, ClienteSpringDataJPARepository clienteRepository, ItemSpringDataJpaRepository itemSpringDataJpaRepository, PedidoMapper mapper) {
         this.repository = repository;
-        this.itemPedidoSpringDataJpaRepository = itemPedidoSpringDataJpaRepository;
         this.clienteRepository = clienteRepository;
         this.itemSpringDataJpaRepository = itemSpringDataJpaRepository;
         this.mapper = mapper;
@@ -91,11 +85,31 @@ public class PedidoRepositorySpringDataJpaImpl implements PedidoRepository {
         repository.save(pedidoEntity);
     }
 
+    @Override
+    @Transactional
+    public void confirmarPedido(String comanda) {
+        PedidoEntity pedidoEntity = getPedidoEntity(comanda);
+        pedidoEntity.setSituacaoPedido(SituacaoPedido.RECEBIDO);
+        repository.save(pedidoEntity);
+    }
+
+    @Override
+    @Transactional
+    public void confirmarPagamentoPedido(String comanda) {
+        PedidoEntity pedidoEntity = getPedidoEntity(comanda);
+        pedidoEntity.setSituacaoPedido(SituacaoPedido.EM_PREPARACAO);
+        repository.save(pedidoEntity);
+    }
+
+    @Override
+    public Pedido getPedido(String comanda) {
+        return mapper.toPedido(getPedidoEntity(comanda));
+    }
+
     private PedidoEntity getPedidoEntity(String comanda) {
-        PedidoEntity pedidoEntity = repository.findByComanda(comanda).orElseThrow(
+        return repository.findByComanda(comanda).orElseThrow(
                 () -> new ApplicationException(TipoExcecao.RECURSO_NAO_ENCONTRADO)
         );
-        return pedidoEntity;
     }
 
     private void setCliente(Pedido pedido, PedidoEntity entity) {

@@ -30,6 +30,10 @@ public class PedidoEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ItemPedidoEntity> itensPedido = new HashSet<>();
 
+    public PedidoEntity() {
+        this.situacaoPedido = SituacaoPedido.PENDENTE;
+    }
+
     public void adicionarItemPedidoEntity(ItemPedidoEntity itemPedidoEntity) {
         this.itensPedido.add(itemPedidoEntity);
     }

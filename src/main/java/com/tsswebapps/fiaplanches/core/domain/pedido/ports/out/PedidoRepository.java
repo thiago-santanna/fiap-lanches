@@ -9,4 +9,7 @@ public interface PedidoRepository {
     PedidoCriadoResponse criarPedido(Pedido pedido);
     ItemPedidoResponse adicionarItemAopedido(String comanda, ItemPedido pedidoItemAdicionado);
     void removerItemDoPedido(String comanda, String referenciaItem);
+    void confirmarPedido(String comanda);
+    void confirmarPagamentoPedido(String comanda);
+    Pedido getPedido(String comanda);
 }

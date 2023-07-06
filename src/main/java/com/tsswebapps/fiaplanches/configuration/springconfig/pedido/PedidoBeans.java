@@ -1,12 +1,9 @@
 package com.tsswebapps.fiaplanches.configuration.springconfig.pedido;
 
-import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.AdicionarItemAoPedidoPort;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.CriarPedidoPort;
-import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.RemoveItemDoPedidoPort;
+import com.tsswebapps.fiaplanches.core.domain.pedido.ports.in.*;
+import com.tsswebapps.fiaplanches.core.domain.pedido.ports.out.PagarPedidoIntegracaoPort;
 import com.tsswebapps.fiaplanches.core.domain.pedido.ports.out.PedidoRepository;
-import com.tsswebapps.fiaplanches.core.usecase.pedido.AdicionarItemAoPedidoUseCase;
-import com.tsswebapps.fiaplanches.core.usecase.pedido.CriarPedidoUseCase;
-import com.tsswebapps.fiaplanches.core.usecase.pedido.RemoveItemDoPedidoUseCase;
+import com.tsswebapps.fiaplanches.core.usecase.pedido.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -24,5 +21,13 @@ public class PedidoBeans {
     @Bean
     public RemoveItemDoPedidoPort removeItemDoPedidoPort(PedidoRepository repository) {
         return new RemoveItemDoPedidoUseCase(repository);
+    }
+    @Bean
+    public ConfirmarPedidoPort confirmarPedidoPort(PedidoRepository repository) {
+        return new ConfirmarPedidoUseCase(repository);
+    }
+    @Bean
+    public PagarPedidoPort pagarPedidoPort(PedidoRepository repository, PagarPedidoIntegracaoPort integracaoPort) {
+        return new PagarPedidoUseCase(repository, integracaoPort);
     }
 }

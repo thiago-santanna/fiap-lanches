@@ -12,4 +12,5 @@ import org.springframework.stereotype.Component;
 public interface PedidoMapper {
     PedidoEntity toPedidoEntity(Pedido pedido);
     ItemPedidoEntity toItemPedidoEntity(ItemPedido itemPedido);
+    Pedido toPedido(PedidoEntity pedidoEntity);
 }
