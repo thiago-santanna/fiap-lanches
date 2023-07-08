@@ -57,7 +57,8 @@ public class PedidoRepositorySpringDataJpaImpl implements PedidoRepository {
         itemPedidoEntity.setItem(itemEntity);
 
         pedidoEntity.adicionarItemPedidoEntity(itemPedidoEntity);
-        pedidoEntity.setValorTotal(pedidoEntity.getValorTotal().add(itemPedidoEntity.getItem().getValor()));
+        pedidoEntity.setValorTotal(pedidoEntity.getValorTotal().add(itemPedidoEntity.getItem().getValor().multiply(
+                BigDecimal.valueOf(itemPedidoEntity.getQuantidade()))));
         repository.save(pedidoEntity);
 
         return new ItemPedidoResponse(
