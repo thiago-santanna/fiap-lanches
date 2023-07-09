@@ -24,4 +24,18 @@ Na tela de entrada informará os dados
 * Usuario - root
 * Senha - root
 * Database - fiaplanches
+* ********************************************************
+Fluxo para fazer um pedido.
+1. Criar um produto. Voce terá que usar o recurso para adicinar(POST /item) os itens que ficarão disponíveis para usar no pedido.
+Você terá que cadastrar usando uma das categorias, então considere fazer uma busca( GET /categoria) nas categorias e usar uma delas na hroa do cadastro.
+2. Agora que temos os produtos vamos criar um pedido(POST /pedido), nesse momento vc receberá um número da comanda, ANOTE pois vamos precisar dele pra todos os outros recursos do pedido.
+3. Você poderá informar dados de cliente ou não, caso queira informar o cliente você fará o cadastro(POST /cliente)
+4. Depois o fluxo seguirá uma ordem. Troque o 123456 pelo número da comanda.  
+   * Confirmar pedido(POST /pedido/123456/confirmar)
+   * Pagar pedido (POST /pedido/123456/pagar)
+   * Finalizar pedido (POST /pedido/123456/finalizar)
+   * Entregar pedido (POST /pedido/123456/entregar)
+5. Em todas as etapas a partir da criação já podemos ver o andamento do pedido no recurso (GET /pedido/123456)
+6. Segue um arquivo para ser importado no programa Insomnia com os recursos prontos para facilitar os testes.
+
 
