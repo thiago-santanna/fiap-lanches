@@ -84,6 +84,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+<!--				<version>2.7.12</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<excludes>
 						<exclude>
@@ -98,10 +106,10 @@
 								<artifactId>mapstruct-processor</artifactId>
 								<version>1.4.2.Final</version>
 							</path>
-							<!-- other annotation processors -->
+							&lt;!&ndash; other annotation processors &ndash;&gt;
 						</annotationProcessorPaths>
 					</excludes>
-				</configuration>
+				</configuration>-->
 			</plugin>
 		</plugins>
 	</build>
