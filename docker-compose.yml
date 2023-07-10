@@ -3,11 +3,10 @@ version: '3.9'
 services:
   mysqlsrv:
     image: 'mysql:5.7'
-    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE: "fiaplanches"
-      MYSQL_USER: "thiagoroot"
+      MYSQL_USER: "root"
       MYSQL_PASSWORD: "root"
     ports:
       - "3306:3306"
@@ -34,7 +33,7 @@ services:
       - 9090:9090
     environment:
       - DATABASE_HOST=mysqlsrv
-      - DATABASE_USER=thiagoroot
+      - DATABASE_USER=root
       - DATABASE_PASSWORD=root
       - DATABASE_NAME=fiaplanches
       - DATABASE_PORT=3306

@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copiando oarquivo pom.xml e tudo que preciso para executar o Maven para a pasta do container
 COPY pom.xml .
-RUN mvn dependency:go-offline -B
+# RUN mvn dependency:go-offline -B
 COPY src src
 RUN mvn clean
 RUN mvn package -DskipTests
